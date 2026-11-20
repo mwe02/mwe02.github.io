@@ -1,433 +1,227 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Engineering portfolio showcasing robotics, automation, and software projects.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Engineering portfolio showcasing selected robotics, automation, and software projects.">
+  <title>Marcus Erke | Engineering Portfolio</title>
+  <style>
+    :root {
+      --white: #ffffff;
+      --background: #fbfdff;
+      --blue-light: #eef7fd;
+      --blue-soft: #dceefa;
+      --blue: #277da7;
+      --blue-dark: #174b67;
+      --orange: #ec8948;
+      --orange-light: #fff1e6;
+      --text: #173044;
+      --muted: #607487;
+      --border: #dce8ee;
+      --shadow: 0 16px 45px rgba(24, 75, 103, 0.08);
+    }
 
-    <title>Marcus Erke | Engineering Portfolio</title>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+    .container { width: min(1100px, 90%); margin: auto; }
+    .eyebrow { color: var(--blue); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h2 { font-size: clamp(1.8rem, 3.4vw, 2.35rem); line-height: 1.2; letter-spacing: -0.035em; }
+    h2::after { content: ""; display: block; width: 48px; height: 4px; margin-top: 15px; border-radius: 5px; background: var(--orange); }
+    p { color: var(--muted); }
 
-    <style>
-        :root {
-            --background: #0f172a;
-            --surface: #1e293b;
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --accent: #38bdf8;
-            --border: #334155;
-        }
+    /* Navigation */
+    header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -.04em; }
+    .logo span { color: var(--orange); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 26px; font-size: .93rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--blue); }
 
-        * {
-            box-sizing: border-box;
-        }
+    /* Hero */
+    .hero { overflow: hidden; background: linear-gradient(117deg, #fff 8%, var(--blue-light) 100%); border-bottom: 1px solid var(--border); }
+    .hero-inner { min-height: 505px; display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: 50px; padding: 86px 0; }
+    .hero h1 { font-size: clamp(2.8rem, 5.8vw, 4.55rem); line-height: 1.09; letter-spacing: -.055em; margin-bottom: 24px; }
+    .hero h1 span { color: var(--blue); }
+    .hero .intro { font-size: 1.06rem; max-width: 610px; }
+    .button-row { display: flex; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 28px; }
+    .button { display: inline-block; border-radius: 9px; padding: 11px 20px; font-weight: 700; transition: transform .2s, box-shadow .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--blue); color: white; box-shadow: 0 8px 18px rgba(39, 125, 167, .18); }
+    .button-secondary { background: white; border: 1px solid var(--border); color: var(--blue-dark); }
+    .hero-visual { aspect-ratio: 1; max-width: 340px; width: 100%; margin: auto; position: relative; display: grid; place-items: center; }
+    .orbital { position: absolute; width: 88%; aspect-ratio: 1; border: 2px dashed #b9dceb; border-radius: 50%; transform: rotate(-18deg); }
+    .orbital::before { content: ""; position: absolute; top: 10%; left: 9%; width: 18px; height: 18px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 8px var(--orange-light); }
+    .visual-card { width: 72%; padding: 30px 24px; background: white; border: 1px solid var(--border); border-radius: 22px; box-shadow: var(--shadow); transform: rotate(-6deg); }
+    .visual-card strong { display: block; font-size: 1.15rem; color: var(--blue-dark); margin-bottom: 10px; }
+    .visual-card span { display: block; color: var(--muted); font-size: .92rem; }
+    .visual-dots { display: flex; gap: 8px; margin-top: 25px; }
+    .visual-dots i { width: 12px; height: 12px; border-radius: 50%; background: #b8ddeb; }
+    .visual-dots i:last-child { background: var(--orange); }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    /* Sections */
+    section.content-section { padding: 78px 0; scroll-margin-top: 95px; }
+    .section-heading { margin-bottom: 30px; }
+    .section-heading > p { max-width: 660px; }
+    .about-copy { max-width: 750px; font-size: 1.04rem; }
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.7;
-        }
+    /* Projects */
+    .project-section { background: #f3f9fd; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .project-card { background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 7px 24px rgba(24, 75, 103, .035); transition: transform .2s, box-shadow .2s; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .project-media { min-height: 175px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(130deg, #d7edf9, #f4faff); color: var(--blue-dark); }
+    .project-card:nth-child(2) .project-media { background: linear-gradient(135deg, #e5f2fb, #fff3e8); }
+    .project-card:nth-child(3) .project-media { background: linear-gradient(135deg, #e2eefb, #dbeeee); }
+    .project-media .symbol { font-size: 2.1rem; line-height: 1; font-weight: 800; }
+    .project-media small { font-size: .76rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .project-media img { display: block; width: 100%; height: 175px; object-fit: cover; }
+    .project-content { padding: 25px; }
+    .project-content h3 { font-size: 1.24rem; margin-bottom: 8px; }
+    .project-content p { margin-bottom: 18px; font-size: .93rem; }
+    .tags { display: flex; gap: 7px; flex-wrap: wrap; }
+    .tag { display: inline-block; padding: 5px 9px; border-radius: 6px; background: var(--blue-light); color: var(--blue-dark); font-size: .76rem; font-weight: 700; }
+    .project-note { padding-top: 18px; margin-top: 17px; border-top: 1px solid var(--border); color: var(--muted); font-size: .83rem; }
+    .project-note span { color: var(--orange); font-weight: 700; }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    /* Skills and contact */
+    .skills { display: flex; flex-wrap: wrap; gap: 11px; }
+    .skill { border: 1px solid var(--border); border-radius: 8px; padding: 10px 15px; background: white; font-weight: 600; font-size: .91rem; }
+    .contact-box { padding: 34px; border: 1px solid var(--border); border-left: 5px solid var(--orange); border-radius: 13px; background: var(--blue-light); }
+    .contact-box p { max-width: 620px; }
+    .contact-box a:not(.button) { color: var(--blue-dark); text-decoration: underline; font-weight: 700; }
+    footer { background: white; padding: 30px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: .87rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
 
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        /* Navigation */
-
-        header {
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 22px 0;
-        }
-
-        .logo {
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Introduction */
-
-        .hero {
-            padding: 100px 0 80px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.4rem, 6vw, 4rem);
-            line-height: 1.2;
-            margin: 10px 0 20px;
-        }
-
-        .hero p {
-            color: var(--muted);
-            max-width: 650px;
-            font-size: 1.1rem;
-        }
-
-        .accent {
-            color: var(--accent);
-        }
-
-        .button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 12px 24px;
-            background: var(--accent);
-            color: #0f172a;
-            font-weight: bold;
-            border-radius: 6px;
-        }
-
-        .button:hover {
-            background: #7dd3fc;
-        }
-
-        /* Sections */
-
-        section {
-            padding: 55px 0;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-        }
-
-        /* Projects */
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .project-media {
-            height: 190px;
-            background: #273750;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--muted);
-        }
-
-        .project-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .project-content {
-            padding: 25px;
-        }
-
-        .project-content h3 {
-            margin: 0 0 10px;
-        }
-
-        .project-content p {
-            color: var(--muted);
-        }
-
-        .tags {
-            color: var(--accent);
-            font-size: 0.85rem;
-            margin-top: 15px;
-        }
-
-        .project-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Skills */
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .skill {
-            padding: 8px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-        }
-
-        /* Footer */
-
-        footer {
-            text-align: center;
-            border-top: 1px solid var(--border);
-            padding: 30px;
-            color: var(--muted);
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                padding: 65px 0;
-            }
-
-            nav {
-                align-items: flex-start;
-            }
-        }
-    </style>
+    @media (max-width: 900px) {
+      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-inner { grid-template-columns: 1fr; padding: 68px 0; min-height: initial; }
+      .hero-visual { display: none; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 15px 0; align-items: flex-start; flex-direction: column; gap: 8px; }
+      .nav-links { gap: 15px; font-size: .84rem; }
+      .hero h1 { font-size: 2.7rem; }
+      section.content-section { padding: 55px 0; }
+      .project-grid { grid-template-columns: 1fr; }
+      .contact-box { padding: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="logo" href="#top">Marcus Erke<span>.</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
 
-    <!-- NAVIGATION -->
+  <main id="top">
+    <div class="hero">
+      <div class="container hero-inner">
+        <div>
+          <p class="eyebrow">Robotics · Automation · Software</p>
+          <h1>Hi, I'm Marcus.<br><span>I build and explore engineering systems.</span></h1>
+          <p class="intro">I'm a master's student in Robotics and Control at OsloMet. This portfolio highlights selected projects, what I contributed, and what I learned along the way.</p>
+          <div class="button-row">
+            <a class="button button-primary" href="#projects">Explore Projects ↗</a>
+            <a class="button button-secondary" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbital"></div>
+          <div class="visual-card">
+            <strong>From idea to prototype</strong>
+            <span>Design · Build · Test · Improve</span>
+            <div class="visual-dots"><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <header>
-        <nav class="container">
-            <a href="#" class="logo">Marcus Erke</a>
+    <section class="content-section container" id="about">
+      <div class="section-heading"><h2>About Me</h2></div>
+      <p class="about-copy">I'm studying Robotics and Control at OsloMet, with a background in electrical and electronics engineering. I enjoy working across software, control systems, and hands-on engineering. Here, I share selected university and personal projects through descriptions, images, demonstrations, and results.</p>
+      <!-- Customize this paragraph to better describe yourself. -->
+    </section>
 
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
+    <section class="content-section project-section" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Work</p>
+          <h2>Featured Projects</h2>
+          <p>Short overviews for now. Individual pages with photos, videos, and results can be added later.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-media"><span class="symbol">↗</span><small>Cloud & DevOps</small></div>
+            <div class="project-content">
+              <h3>Project 1</h3>
+              <p>A cloud autoscaling project using Python and OpenStack, with monitoring and metrics through Prometheus and Grafana.</p>
+              <div class="tags"><span class="tag">Python</span><span class="tag">OpenStack</span><span class="tag">Grafana</span></div>
+              <div class="project-note"><span>Next:</span> Add architecture diagrams and dashboard screenshots.</div>
             </div>
-        </nav>
-    </header>
-
-
-    <main>
-
-        <!-- INTRODUCTION -->
-
-        <section class="hero container">
-            <p class="accent">ROBOTICS · AUTOMATION · SOFTWARE</p>
-
-            <h1>
-                Hi, I'm Marcus.<br>
-                <span class="accent">Engineering Portfolio</span>
-            </h1>
-
-            <p>
-                Master's student in Robotics and Control at OsloMet.
-
-                Interested in robotics, embedded systems,
-                automation, and intelligent technologies.
-
-                This portfolio showcases selected engineering
-                projects, including their implementation,
-                challenges, and results.
-            </p>
-
-            <a class="button" href="#projects">
-                Explore My Projects
-            </a>
-        </section>
-
-
-        <!-- ABOUT -->
-
-        <section id="about" class="container">
-            <h2>About Me</h2>
-
-            <p>
-                <!-- Replace with your own introduction -->
-
-                Write a short paragraph about your background,
-                engineering interests, and what motivates you.
-
-                You can also mention your education and
-                the types of projects you enjoy working on.
-            </p>
-        </section>
-
-
-        <!-- PROJECTS -->
-
-        <section id="projects" class="container">
-            <h2>Featured Projects</h2>
-
-            <div class="project-grid">
-
-                <!-- PROJECT 1 -->
-
-                <article class="project-card">
-                    <div class="project-media">
-                        <!-- Replace with an image later -->
-                        Project Image
-                    </div>
-
-                    <div class="project-content">
-                        <h3>Ruby Acorn</h3>
-
-                        <p>
-                            Briefly describe the project,
-                            your contributions, and its results.
-                        </p>
-
-                        <div class="tags">
-                            Python · Docker · OpenStack
-                        </div>
-
-                        <a class="project-link" href="#contact">
-                            More details available on request
-                        </a>
-                    </div>
-                </article>
-
-
-                <!-- PROJECT 2 -->
-
-                <article class="project-card">
-                    <div class="project-media">
-                        Project Image
-                    </div>
-
-                    <div class="project-content">
-                        <h3>Pelagia — Petal Sensing</h3>
-
-                        <p>
-                            Describe the project objective,
-                            proposed solution, and progress.
-                        </p>
-
-                        <div class="tags">
-                            MATLAB · Simulink · Sensors
-                        </div>
-
-                        <a class="project-link" href="#contact">
-                            More details available on request
-                        </a>
-                    </div>
-                </article>
-
-
-                <!-- PROJECT 3 -->
-
-                <article class="project-card">
-                    <div class="project-media">
-                        Project Image
-                    </div>
-
-                    <div class="project-content">
-                        <h3>ROS2 Raspbot</h3>
-
-                        <p>
-                            Describe the robot, your role,
-                            and what you demonstrated.
-                        </p>
-
-                        <div class="tags">
-                            ROS2 · Robotics · Python
-                        </div>
-
-                        <a class="project-link" href="#contact">
-                            More details available on request
-                        </a>
-                    </div>
-                </article>
-
+          </article>
+          <article class="project-card">
+            <div class="project-media"><span class="symbol">◉</span><small>Sensing & Control</small></div>
+            <div class="project-content">
+              <h3>Project 2</h3>
+              <p>An upcoming master's thesis focused on sensing and estimating the orientation of a rigid underwater petal.</p>
+              <div class="tags"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Sensors</span></div>
+              <div class="project-note"><span>In progress:</span> Add prototype photos and validation results as available.</div>
             </div>
-        </section>
-
-
-        <!-- TECHNICAL SKILLS -->
-
-        <section id="skills" class="container">
-            <h2>Technical Skills</h2>
-
-            <!-- Edit these based on your actual experience -->
-
-            <div class="skills">
-                <span class="skill">Python</span>
-                <span class="skill">C/C++</span>
-                <span class="skill">MATLAB</span>
-                <span class="skill">Simulink</span>
-                <span class="skill">ROS2</span>
-                <span class="skill">Arduino</span>
-                <span class="skill">Raspberry Pi</span>
-                <span class="skill">Docker</span>
-                <span class="skill">Git</span>
-                <span class="skill">CAD & 3D Printing</span>
+          </article>
+          <article class="project-card">
+            <div class="project-media"><span class="symbol">⌁</span><small>Robotics</small></div>
+            <div class="project-content">
+              <h3>Project 3</h3>
+              <p>Robotics coursework involving ROS2 and a mobile robot platform. A place to document the implementation and demonstrations.</p>
+              <div class="tags"><span class="tag">ROS2</span><span class="tag">Robotics</span><span class="tag">Linux</span></div>
+              <div class="project-note"><span>Next:</span> Add a robot photo or demonstration video.</div>
             </div>
-        </section>
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <section class="content-section container" id="skills">
+      <div class="section-heading"><h2>Technical Skills</h2><p>Tools and technologies used across coursework and projects.</p></div>
+      <div class="skills">
+        <span class="skill">Python</span><span class="skill">C / C++</span><span class="skill">MATLAB & Simulink</span>
+        <span class="skill">ROS2</span><span class="skill">Arduino</span><span class="skill">Raspberry Pi</span>
+        <span class="skill">Docker</span><span class="skill">Git</span><span class="skill">CAD & 3D Printing</span>
+      </div>
+    </section>
 
-        <!-- CONTACT -->
+    <section class="content-section container" id="contact">
+      <div class="contact-box">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's connect</h2>
+        <p>Interested in a project or want to know more about my work? You can find my GitHub profile below. Source code and further project details can be discussed upon request, where sharing is permitted.</p>
+        <a class="button button-primary" href="https://github.com/mwe02" target="_blank" rel="noopener noreferrer">Visit My GitHub ↗</a>
+        <!-- Add your LinkedIn link or contact email when ready. -->
+      </div>
+    </section>
+  </main>
 
-        <section id="contact" class="container">
-            <h2>Contact</h2>
-
-            <p>
-                Interested in discussing my projects
-                or learning more about my work?
-                Feel free to contact me.
-            </p>
-
-            <p>
-                <a class="accent"
-                   href="https://github.com/mwe02"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    GitHub Profile
-                </a>
-            </p>
-
-            <!-- Add LinkedIn or email details here -->
-
-            <p>
-                Project source code may be shared
-                upon request where permitted.
-            </p>
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-        <p>© 2026 Marcus Erke</p>
-    </footer>
-
+  <footer><div class="container footer-inner"><span>© 2026 Marcus Erke</span><span>Built with HTML & CSS · Hosted on GitHub Pages</span></div></footer>
 </body>
 </html>
