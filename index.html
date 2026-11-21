@@ -77,7 +77,7 @@
     /* Projects */
     .project-section { background: #f3f9fd; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-    .project-card { background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 7px 24px rgba(24, 75, 103, .035); transition: transform .2s, box-shadow .2s; }
+    .project-card { display: flex; flex-direction: column; height: 100%; color: inherit; text-decoration: none; cursor: pointer; background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 7px 24px rgba(24, 75, 103, .035); transition: transform .2s, box-shadow .2s; }
     .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
     .project-media { min-height: 175px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(130deg, #d7edf9, #f4faff); color: var(--blue-dark); }
     .project-card:nth-child(2) .project-media { background: linear-gradient(135deg, #e5f2fb, #fff3e8); }
@@ -127,7 +127,7 @@
       <a class="logo" href="#top">Marcus Weidemann Erke<span>.</span></a>
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#projects/">Projects</a>
+        <a href="/projects/">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </div>
@@ -142,7 +142,7 @@
           <h1>Hi, I'm Marcus.<br><span>This is my personal engineering website.</span></h1>
           <!-- <p class="intro">I'm a master's student in Robotics and Control at OsloMet. This portfolio shows some projects I have worked on.</p> -->
           <!-- <div class="button-row">
-            <a class="button button-primary" href="#projects/">Explore Projects ↗</a>
+            <a class="button button-primary" href="/projects/">Explore Projects ↗</a>
             <a class="button button-secondary" href="#contact">Get in Touch</a>
           </div> -->
         </div>
@@ -171,45 +171,33 @@
           <!-- <p>Short overviews for now. Individual pages with photos, videos, and results can be added later.</p> -->
         </div>
         <div class="project-grid">
-          <article class="project-card">
+          <a class="project-card" href="/projects/project-1.html">
             <div class="project-media"><span class="symbol">↗</span><small>Cloud & DevOps</small></div>
             <div class="project-content">
-              <h3>
-                <a href="/projects/project-1.html">
-                  Project 1
-                </a>
-              </h3>
+              <h3>Project 1</h3>
               <p>project 1 text here.</p>
               <div class="tags"><span class="tag">Python</span><span class="tag">OpenStack</span><span class="tag">Grafana</span></div>
               <div class="project-note"><span>Next:</span> Add architecture diagrams and dashboard screenshots.</div>
             </div>
-          </article>
-          <article class="project-card">
+          </a>
+          <a class="project-card" href="/projects/project-2.html">
             <div class="project-media"><span class="symbol">◉</span><small>Sensing & Control</small></div>
             <div class="project-content">
-            <h3>
-              <a href="/projects/project-2.html">
-                Project 2
-              </a>
-            </h3>
+            <h3>Project 2</h3>
               <p>Project 2 text here</p>
               <div class="tags"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Sensors</span></div>
               <div class="project-note"><span>In progress:</span> Add prototype photos and validation results as available.</div>
             </div>
-          </article>
-          <article class="project-card">
+          </a>
+          <a class="project-card" href="/projects/project-3.html">
             <div class="project-media"><span class="symbol">⌁</span><small>Robotics</small></div>
             <div class="project-content">
-              <h3>
-                <a href="/projects/project-3.html">
-                  Project 3
-                </a>
-              </h3>
+              <h3>Project 3</h3>
               <p>Project 3 text here.</p>
               <div class="tags"><span class="tag">ROS2</span><span class="tag">Robotics</span><span class="tag">Linux</span></div>
               <div class="project-note"><span>Next:</span> Add a robot photo or demonstration video.</div>
             </div>
-          </article>
+          </a>
         </div>
       </div>
     </section>
