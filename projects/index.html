@@ -1,26 +1,299 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse selected and upcoming engineering projects by Marcus Erke.">
-  <title>Projects | Marcus Erke</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse selected and upcoming engineering projects by Marcus Erke.">
+
+    <title>Projects | Marcus Erke</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Fully clickable project cards */
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: transform 0.25s ease,
+                        box-shadow 0.25s ease;
+        }
+
+        .project-card .project-visual,
+        .project-card .project-body {
+            pointer-events: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(39, 125, 167, 0.15);
+        }
+
+        .project-card:focus-visible {
+            outline: 3px solid #277da7;
+            outline-offset: 3px;
+        }
+
+        .project-card:hover .card-cta {
+            color: #ec8948;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .project-card {
+                transition: none;
+            }
+
+            .project-card:hover {
+                transform: none;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header><nav class="container" aria-label="Main navigation"><a class="logo" href="../index.html">Marcus Erke<span>.</span></a><div class="nav-links"><a href="../index.html#about">About</a><a href="index.html" aria-current="page">Projects</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a></div></nav></header>
-  <main>
-<div class="page-hero"><div class="container"><a class="back-link" href="../index.html">Back to Home</a><p class="eyebrow" style="margin-top:22px">Engineering portfolio</p><h1>My <span class="highlight">Projects</span></h1><p class="lead">A collection of projects I've worked on, with dedicated pages for the goals, my contributions, the process, and results. More photos and demos will be added over time.</p></div></div>
-<section class="content-section"><div class="container"><div class="section-heading"><p class="eyebrow">Portfolio</p><h2>Selected Projects</h2><p>Choose a project to explore it in more detail.</p></div><div class="project-grid">
-  <a class="project-card" href="project-1.html"><div class="project-visual"><span class="project-number">01</span><span class="visual-subtitle">Engineering project</span></div><div class="project-body"><h3>Project 1</h3><p>Read about the objective, what I worked on, and the results.</p><span class="card-cta">Explore project →</span></div></a>
-  <a class="project-card" href="project-2.html"><div class="project-visual"><span class="project-number">02</span><span class="visual-subtitle">Engineering project</span></div><div class="project-body"><h3>Project 2</h3><p>See the approach, tools, photos, and lessons learned.</p><span class="card-cta">Explore project →</span></div></a>
-  <a class="project-card" href="project-3.html"><div class="project-visual"><span class="project-number">03</span><span class="visual-subtitle">Engineering project</span></div><div class="project-body"><h3>Project 3</h3><p>Explore the design process, demonstration, and outcomes.</p><span class="card-cta">Explore project →</span></div></a>
-</div></div></section>
-<section class="content-section upcoming-area" id="upcoming"><div class="container"><div class="section-heading"><p class="eyebrow">What's next</p><h2>Upcoming Projects</h2><p>Ideas and projects I plan to explore next. I'll move them into the main collection as they take shape.</p></div><div class="upcoming-grid">
-  <article class="upcoming-card"><span class="status">Planned</span><h3>Upcoming Project 1</h3><p>Add a short description of the idea, what you want to build, and why it interests you.</p></article>
-  <article class="upcoming-card"><span class="status">Planned</span><h3>Upcoming Project 2</h3><p>Add a short description of your next idea here. No need to claim results before they exist.</p></article>
-</div><p class="notes">Upcoming projects are previews only; full project pages will be added when there is work to show.</p></div></section>
-  </main>
-  <footer><div class="container footer-inner"><span>© 2026 Marcus Erke</span><span>Built with HTML & CSS · Hosted on GitHub Pages</span></div></footer>
+
+    <!-- NAVIGATION -->
+
+    <header>
+        <nav class="container" aria-label="Main navigation">
+
+            <a class="logo" href="../index.html">
+                Marcus Erke<span>.</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="index.html" aria-current="page">Projects</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- PAGE INTRODUCTION -->
+
+        <div class="page-hero">
+            <div class="container">
+
+                <a class="back-link" href="../index.html">
+                    Back to Home
+                </a>
+
+                <p class="eyebrow" style="margin-top:22px">
+                    Engineering portfolio
+                </p>
+
+                <h1>
+                    My <span class="highlight">Projects</span>
+                </h1>
+
+                <p class="lead">
+                    A collection of projects I've worked on,
+                    with dedicated pages for the goals,
+                    my contributions, the process, and results.
+                    More photos and demos will be added over time.
+                </p>
+
+            </div>
+        </div>
+
+
+        <!-- SELECTED PROJECTS -->
+
+        <section class="content-section" id="selected-projects">
+            <div class="container">
+
+                <div class="section-heading">
+                    <p class="eyebrow">Portfolio</p>
+                    <h2>Selected Projects</h2>
+
+                    <p>
+                        Choose a project to explore it in more detail.
+                    </p>
+                </div>
+
+
+                <div class="project-grid">
+
+                    <!-- PROJECT 1 -->
+
+                    <a class="project-card"
+                       href="project-1.html"
+                       aria-label="Explore Project 1">
+
+                        <div class="project-visual">
+                            <span class="project-number">01</span>
+                            <span class="visual-subtitle">
+                                Engineering project
+                            </span>
+                        </div>
+
+                        <div class="project-body">
+                            <h3>Project 1</h3>
+
+                            <p>
+                                Read about the objective,
+                                what I worked on, and the results.
+                            </p>
+
+                            <span class="card-cta">
+                                Explore project →
+                            </span>
+                        </div>
+
+                    </a>
+
+
+                    <!-- PROJECT 2 -->
+
+                    <a class="project-card"
+                       href="project-2.html"
+                       aria-label="Explore Project 2">
+
+                        <div class="project-visual">
+                            <span class="project-number">02</span>
+                            <span class="visual-subtitle">
+                                Engineering project
+                            </span>
+                        </div>
+
+                        <div class="project-body">
+                            <h3>Project 2</h3>
+
+                            <p>
+                                See the approach, tools,
+                                photos, and lessons learned.
+                            </p>
+
+                            <span class="card-cta">
+                                Explore project →
+                            </span>
+                        </div>
+
+                    </a>
+
+
+                    <!-- PROJECT 3 -->
+
+                    <a class="project-card"
+                       href="project-3.html"
+                       aria-label="Explore Project 3">
+
+                        <div class="project-visual">
+                            <span class="project-number">03</span>
+                            <span class="visual-subtitle">
+                                Engineering project
+                            </span>
+                        </div>
+
+                        <div class="project-body">
+                            <h3>Project 3</h3>
+
+                            <p>
+                                Explore the design process,
+                                demonstration, and outcomes.
+                            </p>
+
+                            <span class="card-cta">
+                                Explore project →
+                            </span>
+                        </div>
+
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- UPCOMING PROJECTS -->
+
+        <section class="content-section upcoming-area" id="upcoming">
+            <div class="container">
+
+                <div class="section-heading">
+                    <p class="eyebrow">What's next</p>
+                    <h2>Upcoming Projects</h2>
+
+                    <p>
+                        Ideas and projects I plan to explore next.
+                        I'll move them into the main collection
+                        as they take shape.
+                    </p>
+                </div>
+
+
+                <div class="upcoming-grid">
+
+                    <!-- UPCOMING PROJECT 1 -->
+
+                    <article class="upcoming-card">
+
+                        <span class="status">Planned</span>
+
+                        <h3>Upcoming Project 1</h3>
+
+                        <p>
+                            Add a short description of the idea,
+                            what you want to build,
+                            and why it interests you.
+                        </p>
+
+                    </article>
+
+
+                    <!-- UPCOMING PROJECT 2 -->
+
+                    <article class="upcoming-card">
+
+                        <span class="status">Planned</span>
+
+                        <h3>Upcoming Project 2</h3>
+
+                        <p>
+                            Add a short description of your next idea here.
+                            No need to claim results before they exist.
+                        </p>
+
+                    </article>
+
+                </div>
+
+                <p class="notes">
+                    Upcoming projects are previews only;
+                    full project pages will be added
+                    when there is work to show.
+                </p>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        <div class="container footer-inner">
+
+            <span>© 2026 Marcus Erke</span>
+
+            <span>
+                Built with HTML & CSS · Hosted on GitHub Pages
+            </span>
+
+        </div>
+    </footer>
+
 </body>
 </html>
